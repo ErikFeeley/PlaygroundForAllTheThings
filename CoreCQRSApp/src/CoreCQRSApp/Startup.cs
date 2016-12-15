@@ -24,6 +24,8 @@ namespace CoreCQRSApp
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             app.UseMvc(routeConfig =>
             {
                 routeConfig.MapRoute(
