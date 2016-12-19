@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<ToDoUser> SignInManager
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -31,6 +33,25 @@
                     </div>
                 </li>
             </ul>
+            
+            @if (User.Identity.IsAuthenticated)
+            {
+                
+            }
+
+            @if (SignInManager.IsSignedIn(User))
+            {
+
+            }
+            else
+            {
+                <ul class="nav navbar-nav float-md-right">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+                    </li>
+                </ul>
+            }
+
         </nav>
     </div>
 
