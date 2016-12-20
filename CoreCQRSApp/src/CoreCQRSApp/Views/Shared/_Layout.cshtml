@@ -33,11 +33,6 @@
                     </div>
                 </li>
             </ul>
-            
-            @if (User.Identity.IsAuthenticated)
-            {
-                
-            }
 
             @if (SignInManager.IsSignedIn(User))
             {
@@ -59,9 +54,7 @@
         @RenderBody()
     </div>
 
-    <div class="container">
-        <footer class="footer"></footer>
-    </div>
+    <footer class="footer"></footer>
 
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
 </body>
