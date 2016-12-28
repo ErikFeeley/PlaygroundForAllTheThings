@@ -1,15 +1,19 @@
 ﻿using CoreCQRSApp.Models;
+using CoreCQRSApp.Options;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CoreCQRSApp.Data
 {
     public class ToDoContext : IdentityDbContext<ToDoUser>
     {
-        public ToDoContext(DbContextOptions<ToDoContext> options) 
+        private readonly ConnectionStrings _connectionStrings;
+
+        public ToDoContext(DbContextOptions<ToDoContext> options, IOptions<ConnectionStrings> connectionStrings) 
             : base(options)
         {
-            
+            _connectionStrings = connectionStrings.Value;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
