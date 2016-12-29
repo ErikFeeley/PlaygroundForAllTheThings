@@ -34,6 +34,7 @@ namespace CoreCQRSApp
             services.AddOptions();
 
             // needed this damn package "Microsoft.Extensions.Configuration.Binder": "1.1.0"
+            // this bit just for testing for now. kinda overkill just for getting connection string when we can just config that like we do below.
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings").Bind);
 
             services.AddMvc();

@@ -8,6 +8,7 @@ namespace CoreCQRSApp.Data
 {
     public class ToDoContext : IdentityDbContext<ToDoUser>
     {
+        // just for options pattern testing.
         private readonly ConnectionStrings _connectionStrings;
 
         public ToDoContext(DbContextOptions<ToDoContext> options, IOptions<ConnectionStrings> connectionStrings) 
