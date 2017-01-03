@@ -18,6 +18,8 @@ namespace CoreCQRSApp.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         [Compare(nameof(Password), ErrorMessage = "The password and confirmation passsword do not match.")]
-        public string ConfirmPassword { get; set; }        
+        public string ConfirmPassword { get; set; }
+
+        public string ReturnUrl { get; set; }
     }
 }

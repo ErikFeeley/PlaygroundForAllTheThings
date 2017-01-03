@@ -21,6 +21,15 @@ namespace CoreCQRSApp.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        public IActionResult Login(string returnUrl = null)
+        {
+            var test = RouteData;
+
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();

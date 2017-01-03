@@ -57,6 +57,8 @@ namespace CoreCQRSApp
 
             app.UseStaticFiles();
 
+            app.UseIdentity();
+
             app.UseMvcWithDefaultRoute();
         }
     }
