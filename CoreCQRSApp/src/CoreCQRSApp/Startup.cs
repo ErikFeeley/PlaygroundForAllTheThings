@@ -19,12 +19,10 @@ namespace CoreCQRSApp
 
         public Startup(IHostingEnvironment environment)
         {
-            var builder = new ConfigurationBuilder()
+            Configuration = new ConfigurationBuilder()
                 .SetBasePath(environment.ContentRootPath)
-                .AddJsonFile("appsettings.json", true, true);
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+                .AddJsonFile("appsettings.json", true, true)
+                .AddEnvironmentVariables().Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
