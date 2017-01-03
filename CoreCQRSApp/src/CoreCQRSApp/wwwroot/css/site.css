@@ -1,6 +1,5 @@
 ﻿/*sticky footer stuff via bootstrap sticky footer example*/
 html {
-    position: relative;
     min-height: 100%;
 }
 
