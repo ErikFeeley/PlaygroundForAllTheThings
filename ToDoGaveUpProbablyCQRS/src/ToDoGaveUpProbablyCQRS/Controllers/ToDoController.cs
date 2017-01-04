@@ -12,20 +12,20 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
     [Authorize]
     public class ToDoController : Controller
     {
-        private readonly ApplicationDbContext _dbContext;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationDbContext _dbContext;
 
-        public ToDoController(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager)
+        public ToDoController(UserManager<ApplicationUser> userManager, ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext;
             _userManager = userManager;
+            _dbContext = dbContext;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var toDoThings = await _dbContext.ToDoThings.Select(toDoThing => toDoThing.ApplicationUserId == user.Id).ToListAsync();
+            var toDosByUserId = await _dbContext.ToDoThings.Where(tdt => tdt.ApplicationUserId == user.Id).ToListAsync();
 
             return View();
         }
