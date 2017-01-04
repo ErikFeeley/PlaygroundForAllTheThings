@@ -1,8 +1,10 @@
-﻿{
+{
   "userSecretsId": "aspnet-ToDoGaveUpProbablyCQRS-9ea8ab9f-1d3c-4eab-8d87-d068924a97ab",
 
   "dependencies": {
     "BundlerMinifier.Core": "2.2.306",
+    "MediatR": "2.1.0",
+    "MediatR.Extensions.Microsoft.DependencyInjection": "1.1.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.1.0",

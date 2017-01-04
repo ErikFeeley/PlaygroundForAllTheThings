@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,9 @@ namespace ToDoGaveUpProbablyCQRS
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+            // this should hopefully work without any additional config needed for the default DI... 
+            services.AddMediatR(typeof(Startup));
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
