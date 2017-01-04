@@ -8,9 +8,10 @@ using ToDoGaveUpProbablyCQRS.Data;
 namespace ToDoGaveUpProbablyCQRS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170104183849_reworked entity config for appuser to todothings")]
+    partial class reworkedentityconfigforappusertotodothings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

@@ -8,9 +8,10 @@ using ToDoGaveUpProbablyCQRS.Data;
 namespace ToDoGaveUpProbablyCQRS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170104183129_added required to fluent config")]
+    partial class addedrequiredtofluentconfig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

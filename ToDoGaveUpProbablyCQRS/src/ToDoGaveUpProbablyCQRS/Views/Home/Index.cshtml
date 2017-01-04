@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+@inject SignInManager<ApplicationUser> SignInManager
+
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -64,6 +66,17 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="jumbotron">
+        <h1>You are now signed in muahaha</h1>
+        <p>You now have access to the super secret todoapp hidden behind all this auto gen.</p>
+        <div>
+            <a asp-controller="ToDo" asp-action="Index" class="btn btn-lg btn-primary">ToDo</a>
+        </div>
+    </div>
+}
 
 <div class="row">
     <div class="col-md-3">
