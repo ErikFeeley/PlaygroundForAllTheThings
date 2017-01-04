@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ToDoGaveUpProbablyCQRS.Data;
+using ToDoGaveUpProbablyCQRS.Features.ToDoThings;
 using ToDoGaveUpProbablyCQRS.Models;
 
 namespace ToDoGaveUpProbablyCQRS.Controllers
@@ -13,19 +12,19 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
     public class ToDoController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ApplicationDbContext _dbContext;
+        private readonly IMediator _mediator;
 
-        public ToDoController(UserManager<ApplicationUser> userManager, ApplicationDbContext dbContext)
+        public ToDoController(UserManager<ApplicationUser> userManager, IMediator mediator)
         {
             _userManager = userManager;
-            _dbContext = dbContext;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var toDosByUserId = await _dbContext.ToDoThings.Where(tdt => tdt.ApplicationUserId == user.Id).ToListAsync();
+            var result = await _mediator.SendAsync(new ToDoThingsByUserIdQuery { UserId = user.Id });
 
             return View();
         }
