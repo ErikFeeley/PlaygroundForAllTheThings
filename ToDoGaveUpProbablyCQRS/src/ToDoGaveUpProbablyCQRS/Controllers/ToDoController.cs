@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -24,8 +25,8 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            var result = await _mediator.Send(new ToDoThingsByUserIdQueryAsync { UserId = user.Id });
+            var user = await GetCurrentUserAsync();
+            var result = await _mediator.Send(new ToDoThingsByUserIdQueryAsync { UserId = user.Id }) ?? new List<ToDoThing>();
 
             return View(result);
         }
@@ -40,10 +41,11 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(ToDoThingViewModel toDoThingViewModel)
         {
+            // this sucks needs rework.
             if (!ModelState.IsValid) return View(toDoThingViewModel);
 
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            var result = await _mediator.Send(new AddToDoThingByUserIdCommandAsync { UserId = user.Id, ToDoThingViewModel = toDoThingViewModel });
+            var user = await GetCurrentUserAsync();
+            var result = await _mediator.Send(new AddToDoThingByUserIdCommandAsync(user.Id, toDoThingViewModel));
 
             if (result != null)
             {
@@ -52,5 +54,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
 
             return View(toDoThingViewModel);
         }
+
+        private async Task<ApplicationUser> GetCurrentUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
     }
 }
