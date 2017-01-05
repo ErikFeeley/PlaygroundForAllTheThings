@@ -3,8 +3,8 @@
 
   "dependencies": {
     "BundlerMinifier.Core": "2.2.306",
-    "MediatR": "2.1.0",
-    "MediatR.Extensions.Microsoft.DependencyInjection": "1.1.0",
+    "MediatR": "3.0.0",
+    "MediatR.Extensions.Microsoft.DependencyInjection": "2.0.0",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics": "1.1.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.1.0",

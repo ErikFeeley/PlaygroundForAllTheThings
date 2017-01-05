@@ -24,9 +24,9 @@ namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
             };
 
             await _dbContext.ToDoThings.AddAsync(toDo);
-
             await _dbContext.SaveChangesAsync();
 
+            // i dont like dis I think mediatr should have some sort of standardized return for handlers....
             return toDo;
         }
     }

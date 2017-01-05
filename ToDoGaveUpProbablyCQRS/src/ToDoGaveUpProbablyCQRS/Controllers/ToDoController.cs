@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +25,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var result = await _mediator.SendAsync(new ToDoThingsByUserIdQueryAsync { UserId = user.Id });
+            var result = await _mediator.Send(new ToDoThingsByUserIdQueryAsync { UserId = user.Id });
 
             return View(result);
         }
@@ -44,7 +43,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
             if (!ModelState.IsValid) return View(toDoThingViewModel);
 
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var result = await _mediator.SendAsync(new AddToDoThingByUserIdCommandAsync { UserId = user.Id, ToDoThingViewModel = toDoThingViewModel });
+            var result = await _mediator.Send(new AddToDoThingByUserIdCommandAsync { UserId = user.Id, ToDoThingViewModel = toDoThingViewModel });
 
             if (result != null)
             {
