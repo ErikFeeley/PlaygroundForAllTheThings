@@ -24,7 +24,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
-            var result = await _mediator.SendAsync(new ToDoThingsByUserIdQuery { UserId = user.Id });
+            var result = await _mediator.SendAsync(new ToDoThingsByUserIdQueryAsync { UserId = user.Id });
 
             return View();
         }

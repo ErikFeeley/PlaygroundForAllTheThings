@@ -8,18 +8,18 @@ using ToDoGaveUpProbablyCQRS.Models;
 
 namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
 {
-    public class ToDoThingsByUserHandler : IAsyncRequestHandler<ToDoThingsByUserIdQuery, IEnumerable<ToDoThing>>
+    public class ToDoThingsByUserHandlerAsync : IAsyncRequestHandler<ToDoThingsByUserIdQueryAsync, IEnumerable<ToDoThing>>
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public ToDoThingsByUserHandler(ApplicationDbContext dbContext)
+        public ToDoThingsByUserHandlerAsync(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<ToDoThing>> Handle(ToDoThingsByUserIdQuery query)
+        public async Task<IEnumerable<ToDoThing>> Handle(ToDoThingsByUserIdQueryAsync queryAsync)
         {
-            return await _dbContext.ToDoThings.Where(tdt => tdt.ApplicationUserId == query.UserId).ToListAsync();
+            return await _dbContext.ToDoThings.Where(tdt => tdt.ApplicationUserId == queryAsync.UserId).ToListAsync();
         }
     }
 }
