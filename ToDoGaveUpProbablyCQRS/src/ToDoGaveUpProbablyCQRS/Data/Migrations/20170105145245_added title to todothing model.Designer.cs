@@ -8,9 +8,10 @@ using ToDoGaveUpProbablyCQRS.Data;
 namespace ToDoGaveUpProbablyCQRS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170105145245_added title to todothing model")]
+    partial class addedtitletotodothingmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -178,15 +179,14 @@ namespace ToDoGaveUpProbablyCQRS.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired();
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500);
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50);
+                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
@@ -236,7 +236,8 @@ namespace ToDoGaveUpProbablyCQRS.Data.Migrations
                 {
                     b.HasOne("ToDoGaveUpProbablyCQRS.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("ToDoThings")
-                        .HasForeignKey("ApplicationUserId");
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

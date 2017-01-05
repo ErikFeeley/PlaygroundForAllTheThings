@@ -32,6 +32,11 @@ namespace ToDoGaveUpProbablyCQRS.Data
                             .Property(toDoThing => toDoThing.Description)
                             .HasMaxLength(500)
                             .IsRequired();
+
+            builder.Entity<ToDoThing>()
+                            .Property(tdt => tdt.Title)
+                            .HasMaxLength(50)
+                            .IsRequired();
         }
 
         private static void ConfigureApplicationUserEntity(ModelBuilder builder)
