@@ -44,8 +44,6 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
         {
             var user = await GetCurrentUserAsync();
             // holding on to createdId for now because we could use it to pass along to a details view.
-            // what about getting some kind of result back though to check if the operation succeeds or not.
-            // so some kind of response object...?... hmm...
             var createdId = await _mediator.Send(new AddToDoThingByUserIdCommandAsync(user.Id, toDoThingViewModel));
 
             return RedirectToAction("Index");

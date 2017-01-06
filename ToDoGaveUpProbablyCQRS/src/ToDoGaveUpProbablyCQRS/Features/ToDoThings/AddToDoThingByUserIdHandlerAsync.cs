@@ -23,10 +23,10 @@ namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
                 Description = message.ToDoThingViewModel.Description
             };
 
-            var thing = await _dbContext.ToDoThings.AddAsync(toDo);
+            var entityEntryResult = await _dbContext.ToDoThings.AddAsync(toDo);
             await _dbContext.SaveChangesAsync();
 
-            return thing.Entity.Id;
+            return entityEntryResult.Entity.Id;
         }
     }
 }
