@@ -40,7 +40,6 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ValidateModel]
         public async Task<IActionResult> Add(ToDoThingViewModel toDoThingViewModel)
         {
             var user = await GetCurrentUserAsync();

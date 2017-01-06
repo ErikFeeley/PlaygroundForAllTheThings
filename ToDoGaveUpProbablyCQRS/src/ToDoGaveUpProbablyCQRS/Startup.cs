@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ToDoGaveUpProbablyCQRS.Data;
+using ToDoGaveUpProbablyCQRS.Filters;
 using ToDoGaveUpProbablyCQRS.Models;
 using ToDoGaveUpProbablyCQRS.Services;
 
@@ -44,7 +45,11 @@ namespace ToDoGaveUpProbablyCQRS
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                // Add modelstate validation to the pipeline.
+                options.Filters.Add(typeof(ValidateModelAttribute));
+            });
 
             // this should hopefully work without any additional config needed for the default DI... 
             services.AddMediatR(typeof(Startup));

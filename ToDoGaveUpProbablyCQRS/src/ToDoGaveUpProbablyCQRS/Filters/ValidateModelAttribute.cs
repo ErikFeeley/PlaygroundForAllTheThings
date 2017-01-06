@@ -7,16 +7,15 @@ namespace ToDoGaveUpProbablyCQRS.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!context.ModelState.IsValid)
-            {
-                var controller = context.Controller as Controller;
+            if (context.ModelState.IsValid) return;
 
-                context.Result = new ViewResult
-                {
-                    ViewData = controller.ViewData,
-                    TempData = controller.TempData
-                };
-            }
+            var controller = context.Controller as Controller;
+
+            context.Result = new ViewResult
+            {
+                ViewData = controller.ViewData,
+                TempData = controller.TempData
+            };
         }
     }
 }
