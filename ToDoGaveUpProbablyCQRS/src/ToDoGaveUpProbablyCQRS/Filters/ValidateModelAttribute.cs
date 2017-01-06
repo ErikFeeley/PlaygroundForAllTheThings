@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace ToDoGaveUpProbablyCQRS.Filters
 {
@@ -8,7 +9,13 @@ namespace ToDoGaveUpProbablyCQRS.Filters
         {
             if (!context.ModelState.IsValid)
             {
-                // how to send back to previous view with required model data.
+                var controller = context.Controller as Controller;
+
+                context.Result = new ViewResult
+                {
+                    ViewData = controller.ViewData,
+                    TempData = controller.TempData
+                };
             }
         }
     }

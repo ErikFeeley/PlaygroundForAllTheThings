@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using ToDoGaveUpProbablyCQRS.Features.ToDoThings;
+using ToDoGaveUpProbablyCQRS.Filters;
 using ToDoGaveUpProbablyCQRS.Models;
 using ToDoGaveUpProbablyCQRS.ViewModels;
 
@@ -26,7 +27,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            var result = await _mediator.Send(new ToDoThingsByUserIdQueryAsync { UserId = user.Id }) ?? new List<ToDoThing>();
+            var result = await _mediator.Send(new ToDoThingsByUserIdQueryAsync(user.Id)) ?? new List<ToDoThing>();
 
             return View(result);
         }
@@ -39,12 +40,9 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // [SomeModelStateValidationAttribute?]
+        [ValidateModel]
         public async Task<IActionResult> Add(ToDoThingViewModel toDoThingViewModel)
         {
-            // this sucks needs rework.
-            if (!ModelState.IsValid) return View(toDoThingViewModel);
-
             var user = await GetCurrentUserAsync();
             // holding on to createdId for now because we could use it to pass along to a details view.
             // what about getting some kind of result back though to check if the operation succeeds or not.

@@ -17,16 +17,4 @@
 
 <hr />
 
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        @foreach (var toDoThing in Model)
-            {
-            <div style="background-color: lightgray; margin-top: 10px; margin-bottom: 10px; padding: 10px;">
-                @*shitty inline styles weeee*@
-                <h3 class=""><strong>@toDoThing.Title</strong></h3>
-                <hr />
-                <h4>@toDoThing.Description</h4>
-            </div>
-        }
-    </div>
-</div>
+@await Html.PartialAsync("_DisplayToDosPartial")
