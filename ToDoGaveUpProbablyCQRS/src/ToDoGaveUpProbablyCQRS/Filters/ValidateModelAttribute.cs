@@ -1,13 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Logging;
 
 namespace ToDoGaveUpProbablyCQRS.Filters
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {
+        private readonly ILogger<ValidateModelAttribute> _logger;
+
+        public ValidateModelAttribute(ILogger<ValidateModelAttribute> logger)
+        {
+            _logger = logger;
+        }
+
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.ModelState.IsValid) return;
+            if (context.ModelState.IsValid)
+            {
+                _logger.LogInformation("Server found modelstate errors", context.ModelState.Values);
+                return;
+            }
 
             var controller = context.Controller as Controller;
 

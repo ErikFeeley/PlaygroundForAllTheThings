@@ -4,6 +4,9 @@ using ToDoGaveUpProbablyCQRS.Models;
 
 namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
 {
+    /// <summary>
+    /// will return empty list if db returns nothingz.
+    /// </summary>
     public class ToDoThingsByUserIdQueryAsync : IRequest<IEnumerable<ToDoThing>>
     {
         public ToDoThingsByUserIdQueryAsync(string userId)

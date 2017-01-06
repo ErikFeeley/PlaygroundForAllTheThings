@@ -4,8 +4,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ToDoGaveUpProbablyCQRS.Features.ToDoThings;
-using ToDoGaveUpProbablyCQRS.Filters;
 using ToDoGaveUpProbablyCQRS.Models;
 using ToDoGaveUpProbablyCQRS.ViewModels;
 
@@ -16,18 +16,21 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMediator _mediator;
+        private readonly ILogger<ToDoController> _logger;
+        private const int SOME_CONST_LOGEVENT_ID = 1000;
 
-        public ToDoController(UserManager<ApplicationUser> userManager, IMediator mediator)
+        public ToDoController(UserManager<ApplicationUser> userManager, IMediator mediator, ILogger<ToDoController> logger)
         {
             _userManager = userManager;
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
-            var result = await _mediator.Send(new ToDoThingsByUserIdQueryAsync(user.Id)) ?? new List<ToDoThing>();
+            var result = await _mediator.Send(new ToDoThingsByUserIdQueryAsync(user.Id));
 
             return View(result);
         }
@@ -45,6 +48,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
             var user = await GetCurrentUserAsync();
             // holding on to createdId for now because we could use it to pass along to a details view.
             var createdId = await _mediator.Send(new AddToDoThingByUserIdCommandAsync(user.Id, toDoThingViewModel));
+            _logger.LogInformation(SOME_CONST_LOGEVENT_ID, "Added a new ToDoThing", createdId);
 
             return RedirectToAction("Index");
         }

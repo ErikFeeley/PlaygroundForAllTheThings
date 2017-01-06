@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using ToDoGaveUpProbablyCQRS.Models;
 using ToDoGaveUpProbablyCQRS.ViewModels;
 
 namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings

@@ -17,9 +17,15 @@ namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// returns empty todothing list if db returns nothings.
+        /// </summary>
+        /// <param name="queryAsync"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<ToDoThing>> Handle(ToDoThingsByUserIdQueryAsync queryAsync)
         {
-            return await _dbContext.ToDoThings.Where(tdt => tdt.ApplicationUserId == queryAsync.UserId).ToListAsync();
+            return await _dbContext.ToDoThings.Where(tdt => tdt.ApplicationUserId == queryAsync.UserId).ToListAsync() ??
+                   new List<ToDoThing>();
         }
     }
 }
