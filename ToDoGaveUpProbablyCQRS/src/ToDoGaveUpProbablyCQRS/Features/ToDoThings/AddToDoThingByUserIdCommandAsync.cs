@@ -4,7 +4,7 @@ using ToDoGaveUpProbablyCQRS.ViewModels;
 
 namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
 {
-    public class AddToDoThingByUserIdCommandAsync : IRequest<ToDoThing>
+    public class AddToDoThingByUserIdCommandAsync : IRequest<int>
     {
         public AddToDoThingByUserIdCommandAsync(string userId, ToDoThingViewModel toDoThingViewModel)
         {

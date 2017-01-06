@@ -5,7 +5,7 @@ using ToDoGaveUpProbablyCQRS.Models;
 
 namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
 {
-    public class AddToDoThingByUserIdHandlerAsync : IAsyncRequestHandler<AddToDoThingByUserIdCommandAsync, ToDoThing>
+    public class AddToDoThingByUserIdHandlerAsync : IAsyncRequestHandler<AddToDoThingByUserIdCommandAsync, int>
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -14,7 +14,7 @@ namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
             _dbContext = dbContext;
         }
 
-        public async Task<ToDoThing> Handle(AddToDoThingByUserIdCommandAsync message)
+        public async Task<int> Handle(AddToDoThingByUserIdCommandAsync message)
         {
             var toDo = new ToDoThing
             {
@@ -26,7 +26,7 @@ namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
             var thing = await _dbContext.ToDoThings.AddAsync(toDo);
             await _dbContext.SaveChangesAsync();
 
-            return thing.Entity;
+            return thing.Entity.Id;
         }
     }
 }

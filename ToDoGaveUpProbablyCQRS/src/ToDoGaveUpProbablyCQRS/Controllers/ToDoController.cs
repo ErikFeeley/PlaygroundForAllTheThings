@@ -39,20 +39,19 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        // [SomeModelStateValidationAttribute?]
         public async Task<IActionResult> Add(ToDoThingViewModel toDoThingViewModel)
         {
             // this sucks needs rework.
             if (!ModelState.IsValid) return View(toDoThingViewModel);
 
             var user = await GetCurrentUserAsync();
-            var result = await _mediator.Send(new AddToDoThingByUserIdCommandAsync(user.Id, toDoThingViewModel));
+            // holding on to createdId for now because we could use it to pass along to a details view.
+            // what about getting some kind of result back though to check if the operation succeeds or not.
+            // so some kind of response object...?... hmm...
+            var createdId = await _mediator.Send(new AddToDoThingByUserIdCommandAsync(user.Id, toDoThingViewModel));
 
-            if (result != null)
-            {
-                return RedirectToAction("Index");
-            }
-
-            return View(toDoThingViewModel);
+            return RedirectToAction("Index");
         }
 
         private async Task<ApplicationUser> GetCurrentUserAsync() => await _userManager.GetUserAsync(HttpContext.User);
