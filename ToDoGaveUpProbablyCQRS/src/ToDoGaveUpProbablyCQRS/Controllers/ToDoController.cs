@@ -16,7 +16,9 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMediator _mediator;
         private readonly ILogger<ToDoController> _logger;
-        private const int SOME_CONST_LOGEVENT_ID = 1000;
+
+
+        private const int SomeConstLogeventId = 1000;
 
         public ToDoController(UserManager<ApplicationUser> userManager, IMediator mediator, ILogger<ToDoController> logger)
         {
@@ -47,7 +49,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers
             var user = await GetCurrentUserAsync();
             // holding on to createdId for now because we could use it to pass along to a details view.
             var createdId = await _mediator.Send(new AddToDoThingByUserIdCommandAsync(user.Id, toDoThingViewModel));
-            _logger.LogInformation(SOME_CONST_LOGEVENT_ID, "Added a new ToDoThing", createdId);
+            _logger.LogInformation(SomeConstLogeventId, "Added a new ToDoThing", createdId);
 
             return RedirectToAction("Index");
         }
