@@ -8,9 +8,10 @@ using ToDoBase.Data;
 namespace ToDoBase.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170111222132_added todo model to appuser and provided enitty configs")]
+    partial class addedtodomodeltoappuserandprovidedenittyconfigs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -178,8 +179,7 @@ namespace ToDoBase.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired();
+                    b.Property<string>("ApplicationUserId");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -237,8 +237,7 @@ namespace ToDoBase.Data.Migrations
                 {
                     b.HasOne("ToDoBase.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("ToDos")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ApplicationUserId");
                 });
         }
     }

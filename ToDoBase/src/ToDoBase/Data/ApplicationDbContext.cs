@@ -36,7 +36,9 @@ namespace ToDoBase.Data
 
             // ApplicationUser entity configuration.
             builder.Entity<ApplicationUser>()
-                .HasMany(appUser => appUser.ToDos);
+                .HasMany(appUser => appUser.ToDos)
+                .WithOne(todo => todo.ApplicationUser)
+                .IsRequired();
         }
     }
 }
