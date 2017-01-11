@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using ToDoBase.ViewModels;
 
 namespace ToDoBase.Controllers
 {
@@ -12,6 +14,13 @@ namespace ToDoBase.Controllers
         public IActionResult Add()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Add(ToDoViewModel toDoViewModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }

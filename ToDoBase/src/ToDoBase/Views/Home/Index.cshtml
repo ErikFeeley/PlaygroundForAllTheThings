@@ -1,4 +1,6 @@
-﻿@{
+﻿@inject SignInManager<ApplicationUser> SignInManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -65,10 +67,13 @@
     </a>
 </div>
 
-<div class="jumbotron">
-    <h2>Go Manage Yo ToDos Son!</h2>
-    <a asp-controller="ToDo" asp-action="Index" class="btn btn-lg btn-primary">ToDos!</a>
-</div>
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="jumbotron">
+        <h2>Go Manage Yo ToDos Son!</h2>
+        <a asp-controller="ToDo" asp-action="Index" class="btn btn-lg btn-primary">ToDos!</a>
+    </div>
+}
 
 <div class="row">
     <div class="col-md-3">
