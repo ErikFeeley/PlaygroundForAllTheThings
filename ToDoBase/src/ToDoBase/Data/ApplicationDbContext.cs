@@ -34,7 +34,7 @@ namespace ToDoBase.Data
                 .HasMaxLength(200)
                 .IsRequired();
 
-            // ApplicationUser entity configuration.
+            // ApplicationUser entity/relationship configuration.
             builder.Entity<ApplicationUser>()
                 .HasMany(appUser => appUser.ToDos)
                 .WithOne(todo => todo.ApplicationUser)
