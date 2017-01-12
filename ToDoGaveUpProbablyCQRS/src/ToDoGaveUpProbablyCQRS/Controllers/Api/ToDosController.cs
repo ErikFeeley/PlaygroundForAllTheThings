@@ -1,27 +1,27 @@
 ﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ToDoGaveUpProbablyCQRS.Data;
 using ToDoGaveUpProbablyCQRS.Dtos;
+using ToDoGaveUpProbablyCQRS.Features.ToDoThings;
 
 namespace ToDoGaveUpProbablyCQRS.Controllers.Api
 {
     [Route("/api/[controller]")]
     public class ToDosController : Controller
     {
-        private readonly ApplicationDbContext _dbContext;
-        // just gonna directly use the context here for a quick test.
-        public ToDosController(ApplicationDbContext dbContext)
+        private readonly IMediator _mediator;
+        // just gonna directly use the context here for a quick test.... also getting mediatr going...
+        public ToDosController(ApplicationDbContext dbContext, IMediator mediator)
         {
-            _dbContext = dbContext;
+            _mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _dbContext
-                .ToDoThings
-                .ToListAsync();
+            var result = await _mediator.Send(new ToDoThingsQuery());
 
             return Ok(result);
         }
@@ -29,7 +29,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers.Api
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var result = await _dbContext.ToDoThings.Include(tdt => tdt.ApplicationUser).FirstOrDefaultAsync(tdt => tdt.Id == id);
+            var result = await _mediator.Send(new ToDoThingByIdQuery { Id = id });
 
             var toDoDto = new ToDoDto
             {
