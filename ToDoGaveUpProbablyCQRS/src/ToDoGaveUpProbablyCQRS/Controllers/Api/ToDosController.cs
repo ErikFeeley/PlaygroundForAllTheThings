@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol.Core.v3;
 using ToDoGaveUpProbablyCQRS.Data;
 using ToDoGaveUpProbablyCQRS.Dtos;
-using ToDoGaveUpProbablyCQRS.Models;
 
 namespace ToDoGaveUpProbablyCQRS.Controllers.Api
 {
@@ -20,13 +17,13 @@ namespace ToDoGaveUpProbablyCQRS.Controllers.Api
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ToDoThing>> GetAll()
+        public async Task<IActionResult> GetAll()
         {
             var result = await _dbContext
                 .ToDoThings
                 .ToListAsync();
 
-            return result;
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -42,7 +39,7 @@ namespace ToDoGaveUpProbablyCQRS.Controllers.Api
 
             };
 
-            return Ok(toDoDto.ToJson());
+            return Ok(toDoDto);
         }
     }
 }
