@@ -10,6 +10,6 @@ namespace ToDoGaveUpProbablyCQRS.ViewModels
 
         [Required]
         [MaxLength(500)]
-        public string Description { get; set; }        
+        public string Description { get; set; }
     }
 }
