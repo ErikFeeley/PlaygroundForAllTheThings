@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using ToDoGaveUpProbablyCQRS.Data;
-using ToDoGaveUpProbablyCQRS.ViewModels;
+using ToDoGaveUpProbablyCQRS.Dtos;
 
 namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
 {
-    public class ToDoThingByIdHandlerAsync : IAsyncRequestHandler<ToDoThingByIdQuery, ToDoThingViewModel>
+    public class ToDoThingByIdHandlerAsync : IAsyncRequestHandler<ToDoThingByIdQuery, ToDoDto>
     {
         private readonly ApplicationDbContext _dbContext;
 
@@ -16,13 +16,13 @@ namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
             _dbContext = context;
         }
 
-        public async Task<ToDoThingViewModel> Handle(ToDoThingByIdQuery message)
+        public async Task<ToDoDto> Handle(ToDoThingByIdQuery message)
         {
-            var result = _dbContext.ToDoThings
+            return await _dbContext.ToDoThings
+                .Include(tdt => tdt.ApplicationUser)
                 .Where(tdt => tdt.Id == message.Id)
-                .Select(tdtvm => new ToDoThingViewModel { Title = tdtvm.Title, Description = tdtvm.Description }).AsQueryable();
-
-            return await result.FirstOrDefaultAsync();
+                .Select(toDoDto => new ToDoDto(toDoDto.Title, toDoDto.Description, toDoDto.ApplicationUser.Email))
+                .FirstOrDefaultAsync();
         }
     }
 }

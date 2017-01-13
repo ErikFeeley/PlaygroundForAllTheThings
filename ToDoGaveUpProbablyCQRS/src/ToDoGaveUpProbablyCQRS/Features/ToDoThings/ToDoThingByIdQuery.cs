@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using ToDoGaveUpProbablyCQRS.ViewModels;
+using ToDoGaveUpProbablyCQRS.Dtos;
 
 namespace ToDoGaveUpProbablyCQRS.Features.ToDoThings
 {
-    public class ToDoThingByIdQuery : IRequest<ToDoThingViewModel>
+    public class ToDoThingByIdQuery : IRequest<ToDoDto>
     {
         public ToDoThingByIdQuery(int id)
         {

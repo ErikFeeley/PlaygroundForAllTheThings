@@ -28,6 +28,8 @@ namespace ToDoGaveUpProbablyCQRS.Controllers.Api
         {
             var result = await _mediator.Send(new ToDoThingByIdQuery(id));
 
+            if (result == null) return NotFound();
+
             return Ok(result);
         }
     }
