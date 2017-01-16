@@ -8,9 +8,10 @@ using ToDoGaveUpProbablyCQRS.Data;
 namespace ToDoGaveUpProbablyCQRS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170113202948_not sure if need migration for dbset of join entity")]
+    partial class notsureifneedmigrationfordbsetofjoinentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")

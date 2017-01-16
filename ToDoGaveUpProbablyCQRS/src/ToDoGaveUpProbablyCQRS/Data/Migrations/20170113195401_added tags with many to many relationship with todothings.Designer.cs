@@ -8,9 +8,10 @@ using ToDoGaveUpProbablyCQRS.Data;
 namespace ToDoGaveUpProbablyCQRS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170113195401_added tags with many to many relationship with todothings")]
+    partial class addedtagswithmanytomanyrelationshipwithtodothings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -218,7 +219,7 @@ namespace ToDoGaveUpProbablyCQRS.Data.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("ToDoThingTags");
+                    b.ToTable("ToDoThingTag");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

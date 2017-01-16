@@ -8,6 +8,10 @@ namespace ToDoGaveUpProbablyCQRS.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<ToDoThing> ToDoThings { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
+        // join entity
+        public DbSet<ToDoThingTag> ToDoThingTags { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -19,6 +23,16 @@ namespace ToDoGaveUpProbablyCQRS.Data
             // efcore currently lacks support for a EntityTypeConfiguration class so for now just going with private static methods
             ConfigureApplicationUserEntity(builder);
             ConfigureToDoThingEntity(builder);
+
+            builder.Entity<ToDoThingTag>().HasKey(k => new { k.ToDoThingId, k.TagId });
+
+            builder.Entity<ToDoThingTag>().HasOne(tdtt => tdtt.ToDoThing)
+                .WithMany(tdt => tdt.ToDoThingTags)
+                .HasForeignKey(tdtt => tdtt.ToDoThingId);
+
+            builder.Entity<ToDoThingTag>().HasOne(tdtt => tdtt.Tag)
+                .WithMany(t => t.ToDoThingTags)
+                .HasForeignKey(tdtt => tdtt.TagId);
 
             base.OnModelCreating(builder);
             // Customize the ASP.NET Identity model and override the defaults if needed.
