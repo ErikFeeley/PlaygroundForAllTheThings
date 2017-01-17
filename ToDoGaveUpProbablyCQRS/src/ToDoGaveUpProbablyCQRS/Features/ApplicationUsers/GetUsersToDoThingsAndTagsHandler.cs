@@ -59,11 +59,17 @@ namespace ToDoGaveUpProbablyCQRS.Features.ApplicationUsers
             //    .FirstOrDefaultAsync(tdtt => tdtt.ToDoThing.ApplicationUser.Id == message.Id);
 
             // it looks like this does a new seperate select statement per anon property in the anon select object thing... ya...
-            var result = _dbContext.ToDoThingTags
-                .Include(tdtt => tdtt.ToDoThing.ApplicationUser)
-                .Where(tdtt => tdtt.ToDoThing.ApplicationUser.Id == message.Id)
-                .Select(tdtt => new { tdtt.ToDoThing.ApplicationUser, tdtt.ToDoThing.ApplicationUser.ToDoThings })
-                .FirstOrDefaultAsync();
+            //var result = _dbContext.ToDoThingTags
+            //    .Include(tdtt => tdtt.ToDoThing.ApplicationUser)
+            //    .Where(tdtt => tdtt.ToDoThing.ApplicationUser.Id == message.Id)
+            //    .Select(tdtt => new { tdtt.ToDoThing.ApplicationUser, tdtt.ToDoThing.ApplicationUser.ToDoThings })
+            //    .FirstOrDefaultAsync();
+
+
+            // when u change the result of the query by using a select any .Includes() 0r .ThenIncludes are ignored.
+            //var result = _dbContext.ToDoThingTags
+            //    .Select(tdtt => tdtt.ToDoThing.ApplicationUser)
+            //    .FirstOrDefaultAsync(user => user.Id == message.Id);
 
 
             // this biulds a stupid ass query.
@@ -73,10 +79,19 @@ namespace ToDoGaveUpProbablyCQRS.Features.ApplicationUsers
             //    .ThenInclude(tdtt => tdtt.Tag)
             //    .FirstOrDefaultAsync(user => user.Id == message.Id);
 
+            // gets everything but is shitty looking sql
+            var result = await _dbContext.Users
+                .Where(u => u.Id == message.Id)
+                .Include(u => u.ToDoThings)
+                .ThenInclude(tdt => tdt.ToDoThingTags)
+                .ThenInclude(tdtt => tdtt.Tag)
+                .FirstOrDefaultAsync();
+
             var userDto = new UserDto();
 
             //userDto.Email = result.ToDoThing.ApplicationUser.Id;
-            userDto.Email = result.Result.ApplicationUser.Id;
+            //userDto.Email = result.Result.ApplicationUser.Id;
+            userDto.Email = result.Email;
 
             return userDto;
         }
