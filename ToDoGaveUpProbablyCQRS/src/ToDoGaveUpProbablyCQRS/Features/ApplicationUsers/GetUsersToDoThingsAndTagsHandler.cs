@@ -53,10 +53,17 @@ namespace ToDoGaveUpProbablyCQRS.Features.ApplicationUsers
             //    .ThenInclude(tdtt => tdtt.Tag)
             //    .FirstOrDefaultAsync(tdtt => tdtt.ToDoThing.ApplicationUser.Id == message.Id);
 
-            // plz gawd
-            var result = await _dbContext.ToDoThingTags
+            // plz gawd THIS IS THE BEST ONE SO FAR
+            //var result = await _dbContext.ToDoThingTags
+            //    .Include(tdtt => tdtt.ToDoThing.ApplicationUser)
+            //    .FirstOrDefaultAsync(tdtt => tdtt.ToDoThing.ApplicationUser.Id == message.Id);
+
+            // it looks like this does a new seperate select statement per anon property in the anon select object thing... ya...
+            var result = _dbContext.ToDoThingTags
                 .Include(tdtt => tdtt.ToDoThing.ApplicationUser)
-                .FirstOrDefaultAsync(tdtt => tdtt.ToDoThing.ApplicationUser.Id == message.Id);
+                .Where(tdtt => tdtt.ToDoThing.ApplicationUser.Id == message.Id)
+                .Select(tdtt => new { tdtt.ToDoThing.ApplicationUser, tdtt.ToDoThing.ApplicationUser.ToDoThings })
+                .FirstOrDefaultAsync();
 
 
             // this biulds a stupid ass query.
@@ -68,7 +75,8 @@ namespace ToDoGaveUpProbablyCQRS.Features.ApplicationUsers
 
             var userDto = new UserDto();
 
-            userDto.Email = result.ToDoThing.ApplicationUser.Id;
+            //userDto.Email = result.ToDoThing.ApplicationUser.Id;
+            userDto.Email = result.Result.ApplicationUser.Id;
 
             return userDto;
         }
