@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ED865F44-715F-4E60-B125-478EC337A310}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8B75C6C3-BDA0-42E9-B604-D8E9AB8DF530}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ef6NTierTtest", "src\Ef6NTierTtest\Ef6NTierTtest.xproj", "{5921FCED-CED2-45BF-B150-328391BBE98C}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ef6NTierTest.Services", "src\Ef6NTierTest.Service\Ef6NTierTest.Services.xproj", "{D4BF55B2-57D9-4A83-BE07-3653250D77AD}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ef6NTierTest.Models", "src\Ef6NTierTest.Models\Ef6NTierTest.Models.xproj", "{25DEE198-2773-4D98-9629-7293B8BD71CA}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Ef6NTierTest.Repositories", "src\Ef6NTierTest.Repositories\Ef6NTierTest.Repositories.xproj", "{4A2B1A7F-6545-40EC-9C8E-7ECE6C79982C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ef6NTierTest.Data.EF6", "Ef6NTierTest.Data.EF6\Ef6NTierTest.Data.EF6.csproj", "{043E8496-4EDB-43D4-954C-46ABF8BA13A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5921FCED-CED2-45BF-B150-328391BBE98C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5921FCED-CED2-45BF-B150-328391BBE98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5921FCED-CED2-45BF-B150-328391BBE98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5921FCED-CED2-45BF-B150-328391BBE98C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4BF55B2-57D9-4A83-BE07-3653250D77AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4BF55B2-57D9-4A83-BE07-3653250D77AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4BF55B2-57D9-4A83-BE07-3653250D77AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4BF55B2-57D9-4A83-BE07-3653250D77AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25DEE198-2773-4D98-9629-7293B8BD71CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25DEE198-2773-4D98-9629-7293B8BD71CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25DEE198-2773-4D98-9629-7293B8BD71CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25DEE198-2773-4D98-9629-7293B8BD71CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A2B1A7F-6545-40EC-9C8E-7ECE6C79982C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A2B1A7F-6545-40EC-9C8E-7ECE6C79982C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A2B1A7F-6545-40EC-9C8E-7ECE6C79982C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A2B1A7F-6545-40EC-9C8E-7ECE6C79982C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043E8496-4EDB-43D4-954C-46ABF8BA13A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043E8496-4EDB-43D4-954C-46ABF8BA13A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043E8496-4EDB-43D4-954C-46ABF8BA13A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043E8496-4EDB-43D4-954C-46ABF8BA13A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5921FCED-CED2-45BF-B150-328391BBE98C} = {ED865F44-715F-4E60-B125-478EC337A310}
+		{D4BF55B2-57D9-4A83-BE07-3653250D77AD} = {ED865F44-715F-4E60-B125-478EC337A310}
+		{25DEE198-2773-4D98-9629-7293B8BD71CA} = {ED865F44-715F-4E60-B125-478EC337A310}
+		{4A2B1A7F-6545-40EC-9C8E-7ECE6C79982C} = {ED865F44-715F-4E60-B125-478EC337A310}
+		{043E8496-4EDB-43D4-954C-46ABF8BA13A2} = {ED865F44-715F-4E60-B125-478EC337A310}
+	EndGlobalSection
+EndGlobal

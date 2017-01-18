@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Ef6NTierTest.Models": "1.0.0-*",
+    "Ef6NTierTest.Repositories": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "StructureMap": "4.4.2"
+  },
+
+  "frameworks": {
+    "net452": {} 
+  }
+}
