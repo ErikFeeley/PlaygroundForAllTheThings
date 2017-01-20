@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98D8A11F-DF04-4937-9473-6F6B2FB0A00D}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.API", "src\EFTest.API\EFTest.API.xproj", "{B12CA262-1C85-40E3-A691-29E161C761D4}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.Data.Models", "src\EFTest.Data.Models\EFTest.Data.Models.xproj", "{30FF1A80-DCC3-4535-9B2D-CA20AE6D5AF6}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.Data.Interfaces", "src\EFTest.Data.Interfaces\EFTest.Data.Interfaces.xproj", "{40F90D71-0908-419F-B8B6-BB097F00D87B}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.Data.EF6Implementation", "src\EFTest.Data.EF6Implementation\EFTest.Data.EF6Implementation.xproj", "{94A3DE71-2AD2-41D3-9177-C4D5B8477074}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B12CA262-1C85-40E3-A691-29E161C761D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B12CA262-1C85-40E3-A691-29E161C761D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B12CA262-1C85-40E3-A691-29E161C761D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B12CA262-1C85-40E3-A691-29E161C761D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FF1A80-DCC3-4535-9B2D-CA20AE6D5AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FF1A80-DCC3-4535-9B2D-CA20AE6D5AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FF1A80-DCC3-4535-9B2D-CA20AE6D5AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FF1A80-DCC3-4535-9B2D-CA20AE6D5AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40F90D71-0908-419F-B8B6-BB097F00D87B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40F90D71-0908-419F-B8B6-BB097F00D87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40F90D71-0908-419F-B8B6-BB097F00D87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40F90D71-0908-419F-B8B6-BB097F00D87B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A3DE71-2AD2-41D3-9177-C4D5B8477074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A3DE71-2AD2-41D3-9177-C4D5B8477074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A3DE71-2AD2-41D3-9177-C4D5B8477074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A3DE71-2AD2-41D3-9177-C4D5B8477074}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B12CA262-1C85-40E3-A691-29E161C761D4} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
+		{30FF1A80-DCC3-4535-9B2D-CA20AE6D5AF6} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
+		{40F90D71-0908-419F-B8B6-BB097F00D87B} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
+		{94A3DE71-2AD2-41D3-9177-C4D5B8477074} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
+	EndGlobalSection
+EndGlobal

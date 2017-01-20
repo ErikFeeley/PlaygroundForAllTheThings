@@ -1,0 +1,14 @@
+﻿{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "EFTest.Data.Interfaces": "1.0.0-*",
+    "EFTest.Data.Models": "1.0.0-*",
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "net452": {
+    }
+  }
+}
