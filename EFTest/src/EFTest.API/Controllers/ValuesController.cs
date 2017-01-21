@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using EFTest.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFTest.API.Controllers
@@ -6,11 +8,20 @@ namespace EFTest.API.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IValueRepository _valueRepository;
+
+        public ValuesController(IValueRepository valueRepository)
+        {
+            _valueRepository = valueRepository;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new[] { "value1", "value2" };
+            var results = _valueRepository.Get().ToList();
+
+            return Ok(results);
         }
 
         // GET api/values/5

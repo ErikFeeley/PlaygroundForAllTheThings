@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using StructureMap;
 
 namespace EFTest.API
 {
@@ -21,10 +23,13 @@ namespace EFTest.API
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+                .AddControllersAsServices();
+
+            return ConfigureIoC(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +39,25 @@ namespace EFTest.API
             loggerFactory.AddDebug();
 
             app.UseMvc();
+        }
+
+        private IServiceProvider ConfigureIoC(IServiceCollection services)
+        {
+            var container = new Container();
+
+            container.Configure(config =>
+            {
+                config.Scan(scan =>
+                {
+                    scan.AssembliesAndExecutablesFromApplicationBaseDirectory(); // just scan everything damnit
+                    scan.WithDefaultConventions();
+                    scan.LookForRegistries(); // might not need to do this bit.
+                });
+
+                config.Populate(services);
+            });
+
+            return container.GetInstance<IServiceProvider>();
         }
     }
 }
