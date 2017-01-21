@@ -18,6 +18,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.Data.Interfaces", "s
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.Data.EF6Implementation", "src\EFTest.Data.EF6Implementation\EFTest.Data.EF6Implementation.xproj", "{94A3DE71-2AD2-41D3-9177-C4D5B8477074}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFTest.Data.EF6Context", "EFTest.Data.EF6Context\EFTest.Data.EF6Context.csproj", "{8ADCFF35-61BF-40A2-B31E-E666F2B9547E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{94A3DE71-2AD2-41D3-9177-C4D5B8477074}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94A3DE71-2AD2-41D3-9177-C4D5B8477074}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94A3DE71-2AD2-41D3-9177-C4D5B8477074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ADCFF35-61BF-40A2-B31E-E666F2B9547E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ADCFF35-61BF-40A2-B31E-E666F2B9547E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ADCFF35-61BF-40A2-B31E-E666F2B9547E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ADCFF35-61BF-40A2-B31E-E666F2B9547E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,5 +55,6 @@ Global
 		{30FF1A80-DCC3-4535-9B2D-CA20AE6D5AF6} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
 		{40F90D71-0908-419F-B8B6-BB097F00D87B} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
 		{94A3DE71-2AD2-41D3-9177-C4D5B8477074} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
+		{8ADCFF35-61BF-40A2-B31E-E666F2B9547E} = {C8F70446-0FF3-4D76-BC3E-EE4AE3DA9A3B}
 	EndGlobalSection
 EndGlobal
