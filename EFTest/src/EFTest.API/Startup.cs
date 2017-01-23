@@ -50,8 +50,6 @@ namespace EFTest.API
                 config.Scan(scan =>
                 {
                     scan.AssembliesAndExecutablesFromApplicationBaseDirectory(); // just scan everything damnit
-                    scan.Assembly("EFTest.Data.EF6Implementation");
-                    scan.Assembly("EFTest.Data.EF6Context");
                     scan.TheCallingAssembly();
                     scan.LookForRegistries(); // might not need to do this bit.
                     scan.WithDefaultConventions();

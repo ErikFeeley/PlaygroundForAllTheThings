@@ -18,7 +18,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.Data.Interfaces", "s
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTest.Data.EF6Implementation", "src\EFTest.Data.EF6Implementation\EFTest.Data.EF6Implementation.xproj", "{94A3DE71-2AD2-41D3-9177-C4D5B8477074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFTest.Data.EF6Context", "EFTest.Data.EF6Context\EFTest.Data.EF6Context.csproj", "{8ADCFF35-61BF-40A2-B31E-E666F2B9547E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFTest.Data.EF6Context", "src\EFTest.Data.EF6Context\EFTest.Data.EF6Context.csproj", "{8ADCFF35-61BF-40A2-B31E-E666F2B9547E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

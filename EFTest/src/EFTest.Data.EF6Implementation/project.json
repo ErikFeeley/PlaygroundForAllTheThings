@@ -15,6 +15,7 @@
         "EFTest.Data.EF6Context": {
           "target": "project"
         }
+
       }
     }
   }
