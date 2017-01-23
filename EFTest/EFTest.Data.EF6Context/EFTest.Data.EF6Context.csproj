@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF6ContextRegistry.cs" />
     <Compile Include="Migrations\201701210253498_InitialMigration.cs" />
     <Compile Include="Migrations\201701210253498_InitialMigration.Designer.cs">
       <DependentUpon>201701210253498_InitialMigration.cs</DependentUpon>
