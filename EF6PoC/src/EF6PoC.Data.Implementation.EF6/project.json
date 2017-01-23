@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "EF6PoC.Data.Interfaces": "1.0.0-*",
+    "EF6PoC.Data.Models": "1.0.0-*",
+    "EntityFramework": "6.1.3",
+    "NETStandard.Library": "1.6.1",
+    "StructureMap": "4.4.2"
+  },
+
+  "frameworks": {
+    "net452": {
+      "dependencies": {
+        "EF6PoC.Data.EF6.Context": {
+          "target": "project"
+        }
+
+      }
+    }
+  }
+}
