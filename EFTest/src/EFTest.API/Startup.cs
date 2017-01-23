@@ -50,7 +50,6 @@ namespace EFTest.API
                 config.Scan(scan =>
                 {
                     scan.AssembliesAndExecutablesFromApplicationBaseDirectory(); // just scan everything damnit
-                    scan.TheCallingAssembly();
                     scan.LookForRegistries(); // might not need to do this bit.
                     scan.WithDefaultConventions();
                     // the scanning is only finding the assemblies that are referenced by this project... do i need a new project outside of everything for IoC?.

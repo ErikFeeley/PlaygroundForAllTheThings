@@ -13,3 +13,5 @@ namespace EFTest.Data.EF6Context
         }
     }
 }
+
+// holy shit now this works. ok this registry is the one that is really needed.
