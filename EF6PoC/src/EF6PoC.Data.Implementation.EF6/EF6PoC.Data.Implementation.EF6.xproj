@@ -16,6 +16,7 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EF6PoC.Data.EF6.Context\EF6PoC.Data.EF6.Context.csproj" />
     <ProjectReference Include="..\EF6PoC.Data.EF6.Context\EF6PoC.Data.EF6.Context.csproj" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />

@@ -18,7 +18,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EF6PoC.Data.Models", "src\E
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EF6PoC.Data.Implementation.EF6", "src\EF6PoC.Data.Implementation.EF6\EF6PoC.Data.Implementation.EF6.xproj", "{4A3B60D6-0A7E-4A79-833D-DD5B091799AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF6PoC.Data.EF6.Context", "src\EF6PoC.Data.EF6.Context\EF6PoC.Data.EF6.Context.csproj", "{294A4224-19DA-40C5-991D-C04C3B42B737}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF6PoC.Data.EF6.Context", "EF6PoC.Data.EF6.Context\EF6PoC.Data.EF6.Context.csproj", "{294A4224-19DA-40C5-991D-C04C3B42B737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -22,7 +22,13 @@
   },
 
   "frameworks": {
-    "net452": { }
+    "net452": {
+      "dependencies": {
+        "EF6PoC.Data.EF6.Context": {
+          "target": "project"
+        }
+      }
+    }
   },
 
   "buildOptions": {

@@ -49,7 +49,11 @@ namespace EF6PoC.API
             {
                 config.Scan(scan =>
                 {
-                    scan.AssembliesAndExecutablesFromApplicationBaseDirectory();
+                    scan.Assembly("EF6PoC.API");
+                    scan.Assembly("EF6PoC.Data.EF6.Context");
+                    scan.Assembly("EF6PoC.Data.Implementation.EF6");
+                    scan.Assembly("EF6PoC.Data.Interfaces");
+                    scan.Assembly("EF6PoC.Data.Models");
                     scan.LookForRegistries();
                     scan.WithDefaultConventions();
                 });
