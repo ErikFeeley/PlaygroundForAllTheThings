@@ -24,9 +24,6 @@
   "frameworks": {
     "net452": {
       "dependencies": {
-        "EFTest.Data.EF6Context": {
-          "target": "project"
-        }
 
       }
     }

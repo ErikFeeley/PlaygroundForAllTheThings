@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>b12ca262-1c85-40e3-a691-29e161c761d4</ProjectGuid>
-    <RootNamespace>EFTest.API</RootNamespace>
+    <ProjectGuid>54ea8681-355e-4c8c-9e94-d4d99a5be9fc</ProjectGuid>
+    <RootNamespace>EFTestTakeTwo</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
