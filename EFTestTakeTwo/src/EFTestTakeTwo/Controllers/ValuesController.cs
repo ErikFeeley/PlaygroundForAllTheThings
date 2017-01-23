@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using EFTestTakeTwo.Data.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EFTestTakeTwo.Controllers
@@ -9,11 +8,20 @@ namespace EFTestTakeTwo.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IValueRepository _valueRepository;
+
+        public ValuesController(IValueRepository valueRepository)
+        {
+            _valueRepository = valueRepository;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var myValues = _valueRepository.Get().ToList();
+
+            return Ok(myValues);
         }
 
         // GET api/values/5

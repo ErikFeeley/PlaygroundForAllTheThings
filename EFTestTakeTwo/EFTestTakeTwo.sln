@@ -12,6 +12,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTestTakeTwo", "src\EFTestTakeTwo\EFTestTakeTwo.xproj", "{54EA8681-355E-4C8C-9E94-D4D99A5BE9FC}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTestTakeTwo.Data.Interfaces", "src\EFTestTakeTwo.Data.Interfaces\EFTestTakeTwo.Data.Interfaces.xproj", "{83CCB503-3CBE-4CF6-8567-2BEB27B90208}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTestTakeTwo.Data.Models", "src\EFTestTakeTwo.Data.Models\EFTestTakeTwo.Data.Models.xproj", "{26F220BC-B3C2-4378-B4EA-55CEBA633142}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTestTakeTwo.Data.EF.Implementations", "src\EFTestTakeTwo.Data.EF.Implementations\EFTestTakeTwo.Data.EF.Implementations.xproj", "{46FDD0B3-72DD-4FE3-BCE7-6E2931A7E162}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFTestTakeTwo.Data.EF.Context", "EFTestTakeTwo.Data.EF.Context\EFTestTakeTwo.Data.EF.Context.csproj", "{93B76321-6F81-4A4A-A84A-41D030D81BE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +30,31 @@ Global
 		{54EA8681-355E-4C8C-9E94-D4D99A5BE9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54EA8681-355E-4C8C-9E94-D4D99A5BE9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54EA8681-355E-4C8C-9E94-D4D99A5BE9FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83CCB503-3CBE-4CF6-8567-2BEB27B90208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83CCB503-3CBE-4CF6-8567-2BEB27B90208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83CCB503-3CBE-4CF6-8567-2BEB27B90208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83CCB503-3CBE-4CF6-8567-2BEB27B90208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26F220BC-B3C2-4378-B4EA-55CEBA633142}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26F220BC-B3C2-4378-B4EA-55CEBA633142}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26F220BC-B3C2-4378-B4EA-55CEBA633142}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26F220BC-B3C2-4378-B4EA-55CEBA633142}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46FDD0B3-72DD-4FE3-BCE7-6E2931A7E162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46FDD0B3-72DD-4FE3-BCE7-6E2931A7E162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46FDD0B3-72DD-4FE3-BCE7-6E2931A7E162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46FDD0B3-72DD-4FE3-BCE7-6E2931A7E162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93B76321-6F81-4A4A-A84A-41D030D81BE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93B76321-6F81-4A4A-A84A-41D030D81BE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93B76321-6F81-4A4A-A84A-41D030D81BE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93B76321-6F81-4A4A-A84A-41D030D81BE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{54EA8681-355E-4C8C-9E94-D4D99A5BE9FC} = {97823D73-252E-4CE0-8ED5-B8457E548305}
+		{83CCB503-3CBE-4CF6-8567-2BEB27B90208} = {97823D73-252E-4CE0-8ED5-B8457E548305}
+		{26F220BC-B3C2-4378-B4EA-55CEBA633142} = {97823D73-252E-4CE0-8ED5-B8457E548305}
+		{46FDD0B3-72DD-4FE3-BCE7-6E2931A7E162} = {97823D73-252E-4CE0-8ED5-B8457E548305}
+		{93B76321-6F81-4A4A-A84A-41D030D81BE2} = {97823D73-252E-4CE0-8ED5-B8457E548305}
 	EndGlobalSection
 EndGlobal
