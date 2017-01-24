@@ -50,9 +50,6 @@ namespace EFTestTakeTwo
 
         private IServiceProvider ConfigureIoC(IServiceCollection services)
         {
-            var path = _env.ContentRootPath;
-            var oneUp = Path.GetDirectoryName(path);
-
             var container = new Container();
 
             container.Configure(config =>
@@ -65,8 +62,10 @@ namespace EFTestTakeTwo
                     //scan.Assembly("EFTestTakeTwo.Data.Interfaces");
                     //scan.Assembly("EFTestTakeTwo.Data.Models");
 
-                    // something odd going on... DI only working if using the line below, but it has to load some stuff from the GAC on the first api call making it slow ~4seconds
-                    scan.AssembliesAndExecutablesFromPath(oneUp);
+                    // after moving the ef6 project down into src the standard scan everything seems to work just fine without sepcifying going up a level
+                    //scan.AssembliesAndExecutablesFromPath(oneUp);
+
+                    scan.AssembliesAndExecutablesFromApplicationBaseDirectory();
 
 
                     scan.LookForRegistries();
