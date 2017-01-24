@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -51,6 +52,7 @@ namespace EFTestTakeTwo
         {
             var path = _env.ContentRootPath;
             var oneUp = Path.GetDirectoryName(path);
+            var upAgain = Path.GetDirectoryName(oneUp);
 
             var container = new Container();
 
@@ -58,7 +60,20 @@ namespace EFTestTakeTwo
             {
                 config.Scan(scan =>
                 {
+                    //scan.AssembliesAndExecutablesFromPath(upAgain + "\\EFTestTakeTwo.Data.EF.Context\\bin\\debug");
+                    //scan.AssembliesAndExecutablesFromPath(upAgain + "\\packages\\EntityFramework.6.1.3");
+                    //scan.AssembliesAndExecutablesFromPath(upAgain + "\\packages\\StructureMap.4.4.2");
+
+                    //scan.Assembly("EFTestTakeTwo");
+                    //scan.Assembly("EFTestTakeTwo.Data.EF.Context");
+                    //scan.Assembly("EFTestTakeTwo.Data.EF.Implementations");
+                    //scan.Assembly("EFTestTakeTwo.Data.Interfaces");
+                    //scan.Assembly("EFTestTakeTwo.Data.Models
+
+                    // something odd going on... DI only working if using the line below, but it has to load some stuff from the GAC on the first api call making it slow ~4seconds
                     scan.AssembliesAndExecutablesFromPath(oneUp);
+
+
                     scan.LookForRegistries();
                     scan.WithDefaultConventions();
                 });

@@ -3,8 +3,7 @@
 
   "dependencies": {
     "EFTestTakeTwo.Data.Models": "1.0.0-*",
-    "NETStandard.Library": "1.6.0",
-    "StructureMap": "4.4.2"
+    "NETStandard.Library": "1.6.0"
   },
 
   "frameworks": {
