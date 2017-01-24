@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "MediatrEF6PoC.Messages": "1.0.0-*",
+    "MediatrEF6PoC.Models": "1.0.0-*",
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "net452": {
+      "dependencies": {
+        "MediatrEF6PoC.EF6": {
+          "target": "project"
+        }
+
+      }
+    }
+  }
+}

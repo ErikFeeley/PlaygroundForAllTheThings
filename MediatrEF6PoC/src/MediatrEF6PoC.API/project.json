@@ -1,5 +1,8 @@
-﻿{
+{
   "dependencies": {
+    "MediatrEF6PoC.Handlers": "1.0.0-*",
+    "MediatrEF6PoC.Messages": "1.0.0-*",
+    "MediatrEF6PoC.Models": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.Routing": "1.0.1",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
@@ -18,7 +21,11 @@
   },
 
   "frameworks": {
-    "net452": { }
+    "net452": {
+      "dependencies": {
+
+      }
+    }
   },
 
   "buildOptions": {
