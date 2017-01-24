@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using MediatrEF6PoC2.Messages.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediatrEF6PoC2.API.Controllers
@@ -6,11 +9,20 @@ namespace MediatrEF6PoC2.API.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IMediator _mediator;
+
+        public ValuesController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            var myValues = await _mediator.Send(new GetMyValuesQuery());
+
+            return Ok(myValues);
         }
 
         // GET api/values/5
