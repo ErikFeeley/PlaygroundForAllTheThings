@@ -16,7 +16,7 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EFTestTakeTwo.Data.EF.Context\EFTestTakeTwo.Data.EF.Context.csproj" />
+    <ProjectReference Include="..\EFTestTakeTwo.Data.EF.Context\EFTestTakeTwo.Data.EF.Context.csproj" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

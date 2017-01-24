@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "EFTestTakeTwo.Data.EF.Implementations": "1.0.0-*",
     "EFTestTakeTwo.Data.Interfaces": "1.0.0-*",
     "EFTestTakeTwo.Data.Models": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
@@ -22,7 +23,13 @@
   },
 
   "frameworks": {
-    "net452": { }
+    "net452": {
+      "dependencies": {
+        "EFTestTakeTwo.Data.EF.Context": {
+          "target": "project"
+        }
+      }
+    }
   },
 
   "buildOptions": {

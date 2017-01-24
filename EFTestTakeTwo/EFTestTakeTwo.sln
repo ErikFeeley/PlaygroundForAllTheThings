@@ -18,7 +18,7 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTestTakeTwo.Data.Models",
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "EFTestTakeTwo.Data.EF.Implementations", "src\EFTestTakeTwo.Data.EF.Implementations\EFTestTakeTwo.Data.EF.Implementations.xproj", "{46FDD0B3-72DD-4FE3-BCE7-6E2931A7E162}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFTestTakeTwo.Data.EF.Context", "EFTestTakeTwo.Data.EF.Context\EFTestTakeTwo.Data.EF.Context.csproj", "{93B76321-6F81-4A4A-A84A-41D030D81BE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFTestTakeTwo.Data.EF.Context", "src\EFTestTakeTwo.Data.EF.Context\EFTestTakeTwo.Data.EF.Context.csproj", "{93B76321-6F81-4A4A-A84A-41D030D81BE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
