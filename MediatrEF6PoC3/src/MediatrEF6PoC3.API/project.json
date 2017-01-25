@@ -1,5 +1,9 @@
-﻿{
+{
   "dependencies": {
+    "MediatR": "3.0.0",
+    "MediatrEF6PoC3.EF6Handlers": "1.0.0-*",
+    "MediatrEF6PoC3.Messages": "1.0.0-*",
+    "MediatrEF6PoC3.Models": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.Routing": "1.0.1",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
@@ -10,7 +14,9 @@
     "Microsoft.Extensions.Logging": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
-    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0"
+    "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    "StructureMap": "4.4.2",
+    "StructureMap.Microsoft.DependencyInjection": "1.3.0"
   },
 
   "tools": {
@@ -18,7 +24,13 @@
   },
 
   "frameworks": {
-    "net452": { }
+    "net452": {
+      "dependencies": {
+        "MediatrEF6PoC3.EF6": {
+          "target": "project"
+        }
+      }
+    }
   },
 
   "buildOptions": {
