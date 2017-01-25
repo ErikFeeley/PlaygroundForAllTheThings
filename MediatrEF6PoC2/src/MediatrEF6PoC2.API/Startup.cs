@@ -54,7 +54,7 @@ namespace MediatrEF6PoC2.API
             var container = new Container();
 
             container.Configure(config =>
-            {
+             {
                 config.Scan(scan =>
                 {
                     scan.AssembliesAndExecutablesFromPath(Path.GetDirectoryName(_env.ContentRootPath));
