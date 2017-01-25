@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MediatrEF6PoC2.Messages.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
