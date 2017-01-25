@@ -16,7 +16,7 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MediatrEF6PoC2.EF6\MediatrEF6PoC2.EF6.csproj" />
+    <ProjectReference Include="..\MediatrEF6PoC2.EF6\MediatrEF6PoC2.EF6.csproj" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

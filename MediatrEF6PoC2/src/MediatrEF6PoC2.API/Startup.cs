@@ -57,11 +57,20 @@ namespace MediatrEF6PoC2.API
              {
                 config.Scan(scan =>
                 {
-                    scan.AssembliesAndExecutablesFromPath(Path.GetDirectoryName(_env.ContentRootPath));
+                    //scan.AssembliesAndExecutablesFromPath(Path.GetDirectoryName(_env.ContentRootPath));
+                    //scan.AssembliesAndExecutablesFromApplicationBaseDirectory();
+
+                    // NEED TO SPECIFY THE ASSEMBLIES TO SCAN SPECIFICALLY AFTER MOVING THE EF6 PROJECT INTO THE SRC DIRECTORY.
+                    // IF YOU ARE NOT SPECIFIC THE APP WILL BLOW UP WHEN YOU PUBLISH IT BECAUSE STRUCTUREMAP GOES CRAY CRAY.
+                    scan.Assembly("MediatrEF6PoC2.API");
+                    scan.Assembly("MediatrEF6PoC2.EF6");
+                    scan.Assembly("MediatrEF6PoC2.EF6Handlers");
+                    scan.Assembly("MediatrEF6PoC2.Messages");
+                    scan.Assembly("MediatrEF6PoC2.Models");
                     scan.LookForRegistries();
 
-                    //scan.AddAllTypesOf(typeof(IRequestHandler<,>));
-                    //scan.AddAllTypesOf(typeof(IAsyncRequestHandler<,>));
+                    scan.AddAllTypesOf(typeof(IRequestHandler<,>));
+                    scan.AddAllTypesOf(typeof(IAsyncRequestHandler<,>));
 
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>));
@@ -74,7 +83,7 @@ namespace MediatrEF6PoC2.API
 
                 config.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
                 config.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
-                //config.For<IMediator>().Use<Mediator>();
+                config.For<IMediator>().Use<Mediator>();
 
                 config.Populate(services);
             });
