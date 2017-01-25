@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "MediatrEF6PoC.EF6/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/MediatrEF6PoC.EF6.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/MediatrEF6PoC.EF6.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/MediatrEF6PoC.EF6.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}
