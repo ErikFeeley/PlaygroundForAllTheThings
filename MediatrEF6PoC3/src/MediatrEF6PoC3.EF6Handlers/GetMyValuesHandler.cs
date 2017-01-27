@@ -20,13 +20,11 @@ namespace MediatrEF6PoC3.EF6Handlers
 
         public async Task<IEnumerable<MyValue>> Handle(GetMyValuesQuery message)
         {
-            var myValues = await _dbContext.MyValueEntities.Select(myValueEntity => new MyValue
+            return await _dbContext.MyValueEntities.Select(myValueEntity => new MyValue
             {
                 Id = myValueEntity.Id,
                 Blurb = myValueEntity.Blurb
             }).ToListAsync();
-
-            return myValues;
         }
     }
 }

@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -26,6 +27,9 @@ namespace MediatrEF6PoC3.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            //https://github.com/aspnet/Announcements/issues/190
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             // Add framework services.
             services.AddMvc()
                 .AddControllersAsServices();
@@ -58,6 +62,7 @@ namespace MediatrEF6PoC3.API
 
                     scan.LookForRegistries();
 
+                    // Mediatr specific DI implementation
                     scan.AddAllTypesOf(typeof(IRequestHandler<,>));
                     scan.AddAllTypesOf(typeof(IAsyncRequestHandler<,>));
                     scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
