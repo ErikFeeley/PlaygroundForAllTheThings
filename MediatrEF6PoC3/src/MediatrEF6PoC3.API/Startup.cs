@@ -1,4 +1,5 @@
 ﻿using System;
+using MediatrEF6PoC3.API.MyMiddleWare;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,6 +43,8 @@ namespace MediatrEF6PoC3.API
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseNestedContainerScopeMiddleware();
 
             app.UseMvc();
         }
