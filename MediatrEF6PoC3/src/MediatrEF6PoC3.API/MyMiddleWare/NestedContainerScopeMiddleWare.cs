@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MediatrEF6PoC3.EF6;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,9 @@ namespace MediatrEF6PoC3.API.MyMiddleWare
                 using (var requestContainer = container.GetNestedContainer())
                 {
                     httpContext.RequestServices = requestContainer.GetInstance<IServiceProvider>();
+
+                    var myContext = requestContainer.GetInstance<MyContext>();
+
                     await _next.Invoke(httpContext);
                 }
             }
