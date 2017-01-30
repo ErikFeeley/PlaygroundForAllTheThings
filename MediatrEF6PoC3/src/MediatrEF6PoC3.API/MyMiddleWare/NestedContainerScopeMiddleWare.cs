@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using StructureMap;
 
 namespace MediatrEF6PoC3.API.MyMiddleWare
@@ -8,19 +11,30 @@ namespace MediatrEF6PoC3.API.MyMiddleWare
     public class NestedContainerScopeMiddleWare
     {
         private readonly RequestDelegate _next;
+        private readonly ILogger<NestedContainerScopeMiddleWare> _logger;
 
-        public NestedContainerScopeMiddleWare(RequestDelegate next)
+        public NestedContainerScopeMiddleWare(RequestDelegate next, ILogger<NestedContainerScopeMiddleWare> logger)
         {
             _next = next;
+            _logger = logger;
         }
 
-        public async Task Invoke(HttpContext context, IContainer container)
+        public async Task Invoke(HttpContext httpContext)
         {
-            var myNestedContainer = container.GetNestedContainer();
+            var container = httpContext.RequestServices.GetService<IContainer>();
 
-            
-
-            await _next.Invoke(context);
+            if (container != null)
+            {
+                using (var requestContainer = container.GetNestedContainer())
+                {
+                    httpContext.RequestServices = requestContainer.GetInstance<IServiceProvider>();
+                    await _next.Invoke(httpContext);
+                }
+            }
+            else
+            {
+                await _next.Invoke(httpContext);
+            }
         }
     }
 

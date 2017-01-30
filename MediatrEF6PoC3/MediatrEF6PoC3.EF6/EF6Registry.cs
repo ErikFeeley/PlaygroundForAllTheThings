@@ -9,7 +9,8 @@ namespace MediatrEF6PoC3.EF6
             For<MyContext>()
                 .Use(
                     new MyContext(
-                        "Server=(localdb)\\mssqllocaldb;Database=MediatrEF6PoC3Db;Trusted_Connection=True;MultipleActiveResultSets=true"));
+                        "Server=(localdb)\\mssqllocaldb;Database=MediatrEF6PoC3Db;Trusted_Connection=True;MultipleActiveResultSets=true"))
+                .ContainerScoped();
         }
     }
 }
