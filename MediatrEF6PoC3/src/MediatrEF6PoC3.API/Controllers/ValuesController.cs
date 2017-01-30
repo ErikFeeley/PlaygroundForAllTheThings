@@ -32,9 +32,11 @@ namespace MediatrEF6PoC3.API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var myValue = await _mediator.Send(new GetMyValueByIdQuery(id));
+
+            return Ok(myValue);
         }
 
         // POST api/values

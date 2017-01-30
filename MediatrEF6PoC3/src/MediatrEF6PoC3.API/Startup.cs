@@ -1,5 +1,8 @@
 ﻿using System;
+using FluentValidation.AspNetCore;
 using MediatrEF6PoC3.API.MyMiddleWare;
+using MediatrEF6PoC3.MediatrPipeline;
+using MediatrEF6PoC3.Models;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,7 +36,8 @@ namespace MediatrEF6PoC3.API
 
             // Add framework services.
             services.AddMvc()
-                .AddControllersAsServices();
+                .AddControllersAsServices()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<MyValue>());
 
             return ConfigureIoC(services);
         }
@@ -79,6 +83,8 @@ namespace MediatrEF6PoC3.API
                 config.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
                 config.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
                 config.For<IMediator>().Use<Mediator>();
+                config.For(typeof(IAsyncRequestHandler<,>)).DecorateAllWith(typeof(ValidationHandler<,>));
+                config.For(typeof(IAsyncRequestHandler<,>)).DecorateAllWith(typeof(MediatrPipeline<,>));
 
                 config.Populate(services);
             });
