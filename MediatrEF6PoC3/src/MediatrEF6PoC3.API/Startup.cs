@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Reflection;
 using FluentValidation.AspNetCore;
+using MediatrEF6PoC3.API.Filters;
 using MediatrEF6PoC3.API.MyMiddleWare;
 using MediatrEF6PoC3.MediatrPipeline;
 using MediatrEF6PoC3.Models;
@@ -35,7 +37,10 @@ namespace MediatrEF6PoC3.API
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Add framework services.
-            services.AddMvc()
+            services.AddMvc(options =>
+                {
+                    options.Filters.Add(new ModelStateValidationFilter());
+                })
                 .AddControllersAsServices()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<MyValue>());
 
@@ -61,7 +66,7 @@ namespace MediatrEF6PoC3.API
             {
                 config.Scan(scan =>
                 {
-                    scan.Assembly("MediatrEF6PoC3.API");
+                    scan.Assembly(typeof(Startup).GetTypeInfo().Assembly);
                     scan.Assembly("MediatrEF6PoC3.Models");
                     scan.Assembly("MediatrEF6PoC3.Messages");
                     scan.Assembly("MediatrEF6PoC3.EF6Handlers");
