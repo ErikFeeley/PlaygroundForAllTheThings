@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using FluentValidation.AspNetCore;
 using MediatrEF6PoC3.API.Extensions;
 using MediatrEF6PoC3.API.Filters;
 using MediatrEF6PoC3.API.MyMiddleWare;
+using MediatrEF6PoC3.EF6Handlers;
 using MediatrEF6PoC3.MediatrPipeline;
+using MediatrEF6PoC3.Messages.Query;
 using MediatrEF6PoC3.Models;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -46,7 +49,16 @@ namespace MediatrEF6PoC3.API
                 .AddControllersAsServices()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<MyValue>());
 
-            // services.AddMediatR(); maybe dont use yet
+            var apiAssembly = typeof(Startup).GetTypeInfo().Assembly;
+            var handlerAssembly = typeof(GetMyValuesHandler).GetTypeInfo().Assembly;
+            var messagesAssembly = typeof(GetMyValueByIdQuery).GetTypeInfo().Assembly;
+
+            var listOfAssemblies = new List<Assembly>();
+            listOfAssemblies.Add(apiAssembly);
+            listOfAssemblies.Add(handlerAssembly);
+            listOfAssemblies.Add(messagesAssembly);
+
+            services.AddMediatR(listOfAssemblies); 
 
             return ConfigureIoC(services);
         }
@@ -83,16 +95,21 @@ namespace MediatrEF6PoC3.API
                     scan.WithDefaultConventions();
                 });
 
-                config.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
-                config.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
-                config.For<IMediator>().Use<Mediator>();
-                config.For(typeof(IAsyncRequestHandler<,>)).DecorateAllWith(typeof(ValidationHandler<,>));
-                config.For(typeof(IAsyncRequestHandler<,>)).DecorateAllWith(typeof(MediatrPipeline<,>));
+                MediatrSpecifConfigurations(config);
 
                 config.Populate(services);
             });
 
             return container.GetInstance<IServiceProvider>();
+        }
+
+        private static void MediatrSpecifConfigurations(ConfigurationExpression config)
+        {
+            config.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
+            config.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
+            config.For<IMediator>().Use<Mediator>();
+            config.For(typeof(IAsyncRequestHandler<,>)).DecorateAllWith(typeof(ValidationHandler<,>));
+            config.For(typeof(IAsyncRequestHandler<,>)).DecorateAllWith(typeof(MediatrPipeline<,>));
         }
     }
 }
