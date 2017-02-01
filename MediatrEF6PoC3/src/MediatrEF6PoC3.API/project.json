@@ -2,6 +2,7 @@
   "dependencies": {
     "FluentValidation.AspNetCore": "6.4.0-rc2",
     "MediatR": "3.0.0",
+    "MediatR.Extensions.Microsoft.DependencyInjection": "2.0.0",
     "MediatrEF6PoC3.EF6Handlers": "1.0.0-*",
     "MediatrEF6PoC3.MediatrPipeline": "1.0.0-*",
     "MediatrEF6PoC3.Messages": "1.0.0-*",

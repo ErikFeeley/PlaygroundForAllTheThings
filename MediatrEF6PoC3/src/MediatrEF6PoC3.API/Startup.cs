@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using MediatrEF6PoC3.API.Extensions;
 using MediatrEF6PoC3.API.Filters;
 using MediatrEF6PoC3.API.MyMiddleWare;
 using MediatrEF6PoC3.MediatrPipeline;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyModel;
 using Microsoft.Extensions.Logging;
 using StructureMap;
 
@@ -44,6 +46,8 @@ namespace MediatrEF6PoC3.API
                 .AddControllersAsServices()
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<MyValue>());
 
+            // services.AddMediatR(); maybe dont use yet
+
             return ConfigureIoC(services);
         }
 
@@ -66,21 +70,15 @@ namespace MediatrEF6PoC3.API
             {
                 config.Scan(scan =>
                 {
-                    scan.Assembly(typeof(Startup).GetTypeInfo().Assembly);
-                    scan.Assembly("MediatrEF6PoC3.Models");
-                    scan.Assembly("MediatrEF6PoC3.Messages");
-                    scan.Assembly("MediatrEF6PoC3.EF6Handlers");
-                    scan.Assembly("MediatrEF6PoC3.EF6");
+                    scan.ScanAllMyAssemblies();
 
                     scan.LookForRegistries();
 
-                    // Mediatr specific DI implementation
-                    scan.AddAllTypesOf(typeof(IRequestHandler<,>));
-                    scan.AddAllTypesOf(typeof(IAsyncRequestHandler<,>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
+                    // Mediatr specific DI implementation actually dont need to add these becuase we are just scanning all the assemblies
+                    //scan.AddAllTypesOf(typeof(IRequestHandler<,>));
+                    //scan.AddAllTypesOf(typeof(IAsyncRequestHandler<,>));
+
+                    scan.GlueTogetherMediatrInterfaces(); // extension methods are the awesome!!!
 
                     scan.WithDefaultConventions();
                 });
