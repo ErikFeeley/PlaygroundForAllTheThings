@@ -30,7 +30,8 @@ namespace MediatrEF6PoC3.API.MyMiddleWare
                 {
                     httpContext.RequestServices = requestContainer.GetInstance<IServiceProvider>();
 
-                    var myContext = requestContainer.GetInstance<MyContext>();
+
+                    var myContext = requestContainer.GetInstance<MyContext>(); // was testing things here..
 
                     await _next.Invoke(httpContext);
                 }
