@@ -23,9 +23,6 @@ namespace MediatrEF6PoC3.API.Controllers
         public async Task<IActionResult> Get()
         {
             var myValues = await _mediator.Send(new GetMyValuesQuery());
-            var moreValues = await _mediator.Send(new GetMyValuesQuery());
-            var someOtherValues = await _mediator.Send(new GetMyValuesQuery());
-            var theseAreActuallyAllTheSameValues = await _mediator.Send(new GetMyValuesQuery());
 
             return Ok(myValues);
         }
