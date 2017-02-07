@@ -5,9 +5,11 @@ using MediatrEF6PoC3.API.Extensions;
 using MediatrEF6PoC3.API.Filters;
 using MediatrEF6PoC3.API.MyMiddleWare;
 using MediatrEF6PoC3.EF6Handlers;
+using MediatrEF6PoC3.MediatrPipeline;
 using MediatrEF6PoC3.Messages.Query;
 using MediatrEF6PoC3.Models;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -47,10 +49,9 @@ namespace MediatrEF6PoC3.API
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<MyValue>());
 
 
-            var listOfAssemblies = new List<Assembly> { typeof(Startup).GetTypeInfo().Assembly, typeof(GetMyValuesHandler).GetTypeInfo().Assembly, typeof(GetMyValueByIdQuery).GetTypeInfo().Assembly };
+            var listOfAssemblies = new List<Assembly> { typeof(Startup).GetTypeInfo().Assembly, typeof(GetMyValuesHandler).GetTypeInfo().Assembly, typeof(GetMyValueByIdQuery).GetTypeInfo().Assembly, typeof(Pipelines).GetTypeInfo().Assembly };
 
             services.AddMediatR(listOfAssemblies); 
-
         }
 
         /// <summary>
@@ -65,6 +66,8 @@ namespace MediatrEF6PoC3.API
                 scan.LookForRegistries();
                 scan.WithDefaultConventions();
             });
+
+            registry.For(typeof(IPipelineBehavior<,>)).Add(typeof(RequestPreProcessorBehavior<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
