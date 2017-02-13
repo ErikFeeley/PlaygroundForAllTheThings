@@ -2,6 +2,7 @@
 using MediatrEF6PoC3.Messages.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace MediatrEF6PoC3.API.Controllers
 {
@@ -9,10 +10,12 @@ namespace MediatrEF6PoC3.API.Controllers
     public class ValuesController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly ILogger<ValuesController> _logger;
 
-        public ValuesController(IMediator mediator)
+        public ValuesController(IMediator mediator, ILogger<ValuesController> logger)
         {
             _mediator = mediator;
+            _logger = logger;
         }
 
         // GET api/values
@@ -26,9 +29,11 @@ namespace MediatrEF6PoC3.API.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var myValue = await _mediator.Send(new GetMyValueByIdQuery(id));
+
+            return Ok(myValue);
         }
 
         // POST api/values

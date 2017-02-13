@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using StructureMap.AspNetCore;
 
 namespace MediatrEF6PoC3.API
 {
@@ -12,6 +13,7 @@ namespace MediatrEF6PoC3.API
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseStructureMap()
                 .Build();
 
             host.Run();

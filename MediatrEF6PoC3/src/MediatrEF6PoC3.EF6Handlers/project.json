@@ -6,7 +6,7 @@
     "MediatR": "3.0.0",
     "MediatrEF6PoC3.Messages": "1.0.0-*",
     "MediatrEF6PoC3.Models": "1.0.0-*",
-    "NETStandard.Library": "1.6.0"
+    "NETStandard.Library": "1.6.1"
   },
 
   "frameworks": {

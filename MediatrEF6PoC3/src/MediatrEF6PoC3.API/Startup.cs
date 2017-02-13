@@ -1,6 +1,15 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using FluentValidation.AspNetCore;
+using MediatrEF6PoC3.API.Extensions;
+using MediatrEF6PoC3.API.Filters;
 using MediatrEF6PoC3.API.MyMiddleWare;
+using MediatrEF6PoC3.EF6Handlers;
+using MediatrEF6PoC3.MediatrPipeline;
+using MediatrEF6PoC3.Messages.Query;
+using MediatrEF6PoC3.Models;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,16 +35,39 @@ namespace MediatrEF6PoC3.API
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public IServiceProvider ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             //https://github.com/aspnet/Announcements/issues/190
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Add framework services.
-            services.AddMvc()
-                .AddControllersAsServices();
+            services.AddMvc(options =>
+                {
+                    options.Filters.Add(new ModelStateValidationFilter());
+                })
+                .AddControllersAsServices()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<MyValue>());
 
-            return ConfigureIoC(services);
+
+            var listOfAssemblies = new List<Assembly> { typeof(Startup).GetTypeInfo().Assembly, typeof(GetMyValuesHandler).GetTypeInfo().Assembly, typeof(GetMyValueByIdQuery).GetTypeInfo().Assembly, typeof(Pipelines).GetTypeInfo().Assembly };
+
+            services.AddMediatR(listOfAssemblies); 
+        }
+
+        /// <summary>
+        /// This method gets called by the runtime. Use it to add services with structuremap specific apis.
+        /// </summary>
+        /// <param name="registry"></param>
+        public void ConfigureContainer(Registry registry)
+        {
+            registry.Scan(scan =>
+            {
+                scan.ScanAllMyAssemblies();
+                scan.LookForRegistries();
+                scan.WithDefaultConventions();
+            });
+
+            registry.For(typeof(IPipelineBehavior<,>)).Add(typeof(RequestPreProcessorBehavior<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,43 +79,6 @@ namespace MediatrEF6PoC3.API
             app.UseNestedContainerScopeMiddleware();
 
             app.UseMvc();
-        }
-
-        private IServiceProvider ConfigureIoC(IServiceCollection services)
-        {
-            var container = new Container();
-
-            container.Configure(config =>
-            {
-                config.Scan(scan =>
-                {
-                    scan.Assembly("MediatrEF6PoC3.API");
-                    scan.Assembly("MediatrEF6PoC3.Models");
-                    scan.Assembly("MediatrEF6PoC3.Messages");
-                    scan.Assembly("MediatrEF6PoC3.EF6Handlers");
-                    scan.Assembly("MediatrEF6PoC3.EF6");
-
-                    scan.LookForRegistries();
-
-                    // Mediatr specific DI implementation
-                    scan.AddAllTypesOf(typeof(IRequestHandler<,>));
-                    scan.AddAllTypesOf(typeof(IAsyncRequestHandler<,>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IAsyncRequestHandler<,>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(INotificationHandler<>));
-                    scan.ConnectImplementationsToTypesClosing(typeof(IAsyncNotificationHandler<>));
-
-                    scan.WithDefaultConventions();
-                });
-
-                config.For<SingleInstanceFactory>().Use<SingleInstanceFactory>(ctx => t => ctx.GetInstance(t));
-                config.For<MultiInstanceFactory>().Use<MultiInstanceFactory>(ctx => t => ctx.GetAllInstances(t));
-                config.For<IMediator>().Use<Mediator>();
-
-                config.Populate(services);
-            });
-
-            return container.GetInstance<IServiceProvider>();
         }
     }
 }
