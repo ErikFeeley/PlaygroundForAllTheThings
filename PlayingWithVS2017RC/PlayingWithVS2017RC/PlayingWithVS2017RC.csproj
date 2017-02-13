@@ -12,6 +12,8 @@
     <UserSecretsId>aspnet-PlayingWithVS2017RC-c43f9788-e178-4c6a-bee9-f6294b2e43de</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="3.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.0" />
@@ -33,6 +35,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Program.d.ts">
+      <DependentUpon>Program.cs</DependentUpon>
+    </None>
     <None Update="Startup.d.ts">
       <DependentUpon>Startup.cs</DependentUpon>
     </None>
