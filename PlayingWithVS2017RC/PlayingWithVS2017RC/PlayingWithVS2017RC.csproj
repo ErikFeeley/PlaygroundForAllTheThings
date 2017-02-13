@@ -35,12 +35,24 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0-msbuild3-final" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Handlers\GetMyStuffHandler.d.ts">
+      <DependentUpon>GetMyStuffHandler.cs</DependentUpon>
+    </None>
+    <None Update="Messages\Queries\GetMyStuffQuery.d.ts">
+      <DependentUpon>GetMyStuffQuery.cs</DependentUpon>
+    </None>
     <None Update="Program.d.ts">
       <DependentUpon>Program.cs</DependentUpon>
+    </None>
+    <None Update="Services\IEmailSender.d.ts">
+      <DependentUpon>IEmailSender.cs</DependentUpon>
     </None>
     <None Update="Startup.d.ts">
       <DependentUpon>Startup.cs</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Queries\Messages\" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PlayingWithVS2017RC.Messages.Queries;
 
 namespace PlayingWithVS2017RC.Controllers
 {
@@ -14,7 +15,7 @@ namespace PlayingWithVS2017RC.Controllers
 
         public IActionResult Index()
         {
-            _mediator.Send(new GetMyStuffQuery());
+            var stuff =_mediator.Send(new GetMyStuffQuery());
 
             return View();
         }
