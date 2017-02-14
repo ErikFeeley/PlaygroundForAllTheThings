@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ToDoThing.Features.Home;
 using ToDoThing.Models;
 using ToDoThing.Models.AccountViewModels;
 using ToDoThing.Services;
