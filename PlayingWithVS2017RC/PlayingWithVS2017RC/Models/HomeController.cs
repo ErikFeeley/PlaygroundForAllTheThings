@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PlayingWithVS2017RC.Messages.Queries;
 
-namespace PlayingWithVS2017RC.Controllers
+namespace PlayingWithVS2017RC.Models
 {
     public class HomeController : Controller
     {
