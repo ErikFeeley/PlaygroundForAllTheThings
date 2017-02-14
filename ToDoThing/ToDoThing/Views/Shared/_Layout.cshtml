@@ -27,12 +27,12 @@
         <a class="navbar-brand" asp-controller="Home" asp-action="Index">ToDoThing</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav">
+            <div class="navbar-nav mr-auto">
                 <a class="nav-item nav-link" asp-controller="Home" asp-action="Index">Home</a>
                 <a class="nav-item nav-link" asp-controller="Home" asp-action="About">About</a>
                 <a class="nav-item nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
-                @await Html.PartialAsync("_LoginPartial")
             </div>
+            @await Html.PartialAsync("_LoginPartial")
         </div>
     </nav>
 
