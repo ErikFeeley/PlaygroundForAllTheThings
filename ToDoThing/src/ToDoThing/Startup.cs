@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ToDoThing.Data;
+using ToDoThing.Extensions;
 using ToDoThing.Models;
 using ToDoThing.Services;
 
@@ -13,7 +14,11 @@ namespace ToDoThing
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public IConfigurationRoot Configuration { get; }
+        private readonly ILogger<Startup> _logger;
+
+
+        public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
@@ -28,13 +33,15 @@ namespace ToDoThing
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-        }
 
-        public IConfigurationRoot Configuration { get; }
+            _logger = loggerFactory.AddCreateCustomLogger(Configuration);
+            _logger.LogInformation("Created and added custom logger");
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            _logger.LogInformation("Configuring services.");
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -51,10 +58,10 @@ namespace ToDoThing
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            _logger.LogInformation("Configuring Http request pipeline.");
+            _logger.LogInformation($"App running in {env.EnvironmentName} mode.");
 
             if (env.IsDevelopment())
             {

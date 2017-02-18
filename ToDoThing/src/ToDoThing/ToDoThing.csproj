@@ -39,5 +39,16 @@
   <ItemGroup>
     <Folder Include="Domain\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Extensions\Extensions.d.ts">
+      <DependentUpon>Extensions.cs</DependentUpon>
+    </None>
+    <None Update="Program.d.ts">
+      <DependentUpon>Program.cs</DependentUpon>
+    </None>
+    <None Update="Startup.d.ts">
+      <DependentUpon>Startup.cs</DependentUpon>
+    </None>
+  </ItemGroup>
 
 </Project>
