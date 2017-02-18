@@ -20,6 +20,7 @@ namespace ToDoThing
 
         public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            //Configuration = SetupConfigurationBuilder(configurationBuilder, env); it looks like the default provider does not have a IConfiguartionBuilder registered on app init
             Configuration = SetupConfigurationBuilder(new ConfigurationBuilder(), env);
 
             _logger = loggerFactory.AddCreateCustomLogger(Configuration);
