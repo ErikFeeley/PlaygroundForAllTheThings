@@ -20,19 +20,7 @@ namespace ToDoThing
 
         public Startup(IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets<Startup>();
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = SetupConfigurationBuilder(new ConfigurationBuilder(), env);
 
             _logger = loggerFactory.AddCreateCustomLogger(Configuration);
             _logger.LogInformation("Created and added custom logger");
@@ -89,6 +77,23 @@ namespace ToDoThing
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private static IConfigurationRoot SetupConfigurationBuilder(IConfigurationBuilder configurationBuilder, IHostingEnvironment env)
+        {
+            configurationBuilder.SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            if (env.IsDevelopment())
+            {
+                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
+                configurationBuilder.AddUserSecrets<Startup>();
+            }
+
+            configurationBuilder.AddEnvironmentVariables();
+
+            return configurationBuilder.Build();
         }
     }
 }
