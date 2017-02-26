@@ -89,6 +89,12 @@ ipch/
 *.vspx
 *.sap
 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # TFS 2012 Local Workspace
 $tf/
 
