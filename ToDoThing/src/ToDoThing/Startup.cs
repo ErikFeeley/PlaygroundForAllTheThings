@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Reflection;
+using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +25,7 @@ namespace ToDoThing
             //Configuration = SetupConfigurationBuilder(configurationBuilder, env); it looks like the default provider does not have a IConfiguartionBuilder registered on app init
             Configuration = SetupConfigurationBuilder(new ConfigurationBuilder(), env);
 
-            _logger = loggerFactory.AddCreateCustomLogger(Configuration);
+            _logger = loggerFactory.AddCreateCustomLogger(Configuration, env);
             _logger.LogInformation("Created and added custom logger");
         }
 
@@ -38,6 +40,8 @@ namespace ToDoThing
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
             services.AddMvc();
 

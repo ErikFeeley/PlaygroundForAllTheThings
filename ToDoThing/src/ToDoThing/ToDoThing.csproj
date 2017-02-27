@@ -16,6 +16,8 @@
     <Content Include="wwwroot\images\testimg.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="3.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="2.0.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="1.1.0" />

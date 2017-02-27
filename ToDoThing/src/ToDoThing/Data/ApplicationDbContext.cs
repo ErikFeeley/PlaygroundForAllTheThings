@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ToDoThing.Models;
 
@@ -14,6 +10,8 @@ namespace ToDoThing.Data
             : base(options)
         {
         }
+
+        public DbSet<Models.Task> Tasks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
