@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26206.0
@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{912129EC-0204-42ED-AFBC-7DEC17AD8115}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoz.Web", "src\ToDoz.Web\ToDoz.Web.csproj", "{B4C8D97C-2862-4932-9340-DCB91C4CFF15}"
+EndProject
+Project("{13B669BE-BB05-4DDF-9536-439F39A36129}") = "ToDoz.Data", "src\ToDoz.Data\ToDoz.Data.csproj", "{15467D73-C547-4E84-BC28-68FFAAC61FDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,11 +31,24 @@ Global
 		{B4C8D97C-2862-4932-9340-DCB91C4CFF15}.Release|x64.Build.0 = Release|x64
 		{B4C8D97C-2862-4932-9340-DCB91C4CFF15}.Release|x86.ActiveCfg = Release|x86
 		{B4C8D97C-2862-4932-9340-DCB91C4CFF15}.Release|x86.Build.0 = Release|x86
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Debug|x64.ActiveCfg = Debug|x64
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Debug|x64.Build.0 = Debug|x64
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Debug|x86.ActiveCfg = Debug|x86
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Debug|x86.Build.0 = Debug|x86
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Release|x64.ActiveCfg = Release|x64
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Release|x64.Build.0 = Release|x64
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Release|x86.ActiveCfg = Release|x86
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B4C8D97C-2862-4932-9340-DCB91C4CFF15} = {912129EC-0204-42ED-AFBC-7DEC17AD8115}
+		{15467D73-C547-4E84-BC28-68FFAAC61FDC} = {912129EC-0204-42ED-AFBC-7DEC17AD8115}
 	EndGlobalSection
 EndGlobal
