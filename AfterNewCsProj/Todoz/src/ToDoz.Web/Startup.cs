@@ -28,7 +28,7 @@ namespace ToDoz.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
     }
