@@ -1,0 +1,27 @@
+{
+  "name": "koa-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "serve": "node ./build/index.js",
+    "start": "npm run build && npm run serve",
+    "superstart": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.0.45",
+    "@types/node": "^9.6.7",
+    "nodemon": "^1.17.3",
+    "ts-node": "^6.0.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.8.0",
+    "typescript": "^2.8.3"
+  }
+}
