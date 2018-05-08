@@ -1,0 +1,3 @@
+var _user$project$Main$Model = function (a) {
+	return {counter: a};
+};
