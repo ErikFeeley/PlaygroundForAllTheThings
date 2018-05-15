@@ -1,0 +1,107 @@
+var _user$project$Commands$randomStuff = F2(
+	function (randomThingy, msg) {
+		return A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$button,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Events$onClick(msg),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('generate'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(randomThingy),
+					_1: {ctor: '[]'}
+				}
+			});
+	});
+var _user$project$Commands$Model = F2(
+	function (a, b) {
+		return {randomNum: a, randomBool: b};
+	});
+var _user$project$Commands$init = {
+	ctor: '_Tuple2',
+	_0: A2(_user$project$Commands$Model, 1, false),
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$Commands$OnBoolResult = function (a) {
+	return {ctor: 'OnBoolResult', _0: a};
+};
+var _user$project$Commands$GenerateBool = {ctor: 'GenerateBool'};
+var _user$project$Commands$OnResult = function (a) {
+	return {ctor: 'OnResult', _0: a};
+};
+var _user$project$Commands$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'Roll':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: A2(
+						_elm_lang$core$Random$generate,
+						_user$project$Commands$OnResult,
+						A2(_elm_lang$core$Random$int, 1, 6))
+				};
+			case 'OnResult':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{randomNum: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'GenerateBool':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: A2(_elm_lang$core$Random$generate, _user$project$Commands$OnBoolResult, _elm_lang$core$Random$bool)
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{randomBool: _p0._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});
+var _user$project$Commands$Roll = {ctor: 'Roll'};
+var _user$project$Commands$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: A2(
+				_user$project$Commands$randomStuff,
+				_elm_lang$core$Basics$toString(model.randomNum),
+				_user$project$Commands$Roll),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$Commands$randomStuff,
+					_elm_lang$core$Basics$toString(model.randomBool),
+					_user$project$Commands$GenerateBool),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Commands$main = _elm_lang$html$Html$program(
+	{
+		init: _user$project$Commands$init,
+		view: _user$project$Commands$view,
+		update: _user$project$Commands$update,
+		subscriptions: _elm_lang$core$Basics$always(_elm_lang$core$Platform_Sub$none)
+	})();
